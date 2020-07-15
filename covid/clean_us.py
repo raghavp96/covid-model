@@ -1,22 +1,22 @@
 import pandas as pd
 
 def process(data: pd.DataFrame, idx: pd.IndexSlice):
-    states = {
-        "US_MI" : process_US_MI,
-        "US_NJ" : process_US_NJ,
-        "US_CA" : process_US_CA,
-        "US_SC" : process_US_SC,
-        "US_OR" : process_US_OR,
-        "US_OH" : process_US_OH,
-        "US_NV" : process_US_NV,
-        "US_WA" : process_US_WA,
-        "US_AL" : process_US_AL,
-        "US_AR" : process_US_AR,
-        "US_MS" : process_US_MS,
-        "US_PA" : process_US_PA
-    }
+    state_processors = [
+        process_US_MI,
+        process_US_NJ,
+        process_US_CA,
+        process_US_SC,
+        process_US_OR,
+        process_US_OH,
+        process_US_NV,
+        process_US_WA,
+        process_US_AL,
+        process_US_AR,
+        process_US_MS,
+        process_US_PA
+    ]
 
-    for processor in states.values():
+    for processor in state_processors:
         data = processor(data, idx)
 
     return data
